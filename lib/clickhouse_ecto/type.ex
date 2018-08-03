@@ -8,6 +8,9 @@ defmodule ClickhouseEcto.Type do
     {:ok, to_string(value)}
   end
 
+  def encode(true, :boolean), do: {:ok, 1}
+  def encode(false, :boolean), do: {:ok, 0}
+
   def encode(value, :binary_id) when is_binary(value) do
     Ecto.UUID.load(value)
   end
@@ -48,6 +51,9 @@ defmodule ClickhouseEcto.Type do
     {:ok, Decimal.new(value)}
   end
 
+  def decode(0, :boolean), do: {:ok, false}
+  def decode(1, :boolean), do: {:ok, true}
+
   def decode(value, :uuid) do
     Ecto.UUID.dump(value)
   end
@@ -70,5 +76,4 @@ defmodule ClickhouseEcto.Type do
   def decode(value, _type) do
     {:ok, value}
   end
-
 end
