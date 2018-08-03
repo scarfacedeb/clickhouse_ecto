@@ -6,7 +6,8 @@ defmodule ClickhouseEcto.Mixfile do
       app: :clickhouse_ecto,
       version: "0.2.4",
       elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
+      test_paths: ["integration/clickhouse", "test"],
       deps: deps(),
       description: description(),
       package: package(),
@@ -35,7 +36,7 @@ defmodule ClickhouseEcto.Mixfile do
       name: "clickhouse_ecto",
       maintainers: maintainers(),
       licenses: ["Apache 2.0"],
-      files: ["lib", "test", "config", "mix.exs", "README*", "LICENSE*"],
+      files: ["lib", "mix.exs", "README*", "LICENSE*"],
       links: %{"GitHub" => "https://github.com/appodeal/clickhouse_ecto"}
     ]
   end
